@@ -1,4 +1,3 @@
-""" This is a dummy example """
 import openmeteo_requests
 import requests_cache
 import pandas as pd 
@@ -19,6 +18,7 @@ general_params = {
     "end_date": "2020-12-31",
     "daily": "temperature_2m_mean,precipitation_sum,wind_speed_10m_max"
 }
+
 cities = {
     "Madrid": {"latitude": 40.416775,"longitude": -3.703790},
     "London": {"latitude": 51.507351,"longitude": -0.12775},
@@ -35,7 +35,7 @@ def get_data_meteo_api(city:str):
     print(f"The information shown from now on is about the city {city}")
     return response
 
-def process_response(response, city:str):
+def process_response(response:str, city:str) -> pd.DataFrame:
     print(f"Coordinates {response.Latitude()}°N {response.Longitude()}°E")
     print(f"Elevation {response.Elevation()} m asl")
     print(f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
@@ -61,7 +61,7 @@ def process_response(response, city:str):
     return daily_dataframe
 
 
-def daily_data_to_monthly_data(df: pd.DataFrame, city:str):
+def daily_data_to_monthly_data(df: pd.DataFrame, city:str) -> pd.DataFrame:
 
     df['year'] = df['date'].dt.year
     df['month'] = df['date'].dt.month
@@ -79,7 +79,7 @@ def daily_data_to_monthly_data(df: pd.DataFrame, city:str):
     return df_monthly
     
 
-def visualize_evolution(df: pd.DataFrame, city:str):
+def visualize_evolution(df: pd.DataFrame, city:str) -> None:
     fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(12,12))
     plt.subplots_adjust(hspace=0.5)
 
@@ -100,7 +100,7 @@ def visualize_evolution(df: pd.DataFrame, city:str):
     axes[-1].set_xlabel('Date')
     plt.show()
 
-def visualize_histogram(df: pd.DataFrame, city: str):
+def visualize_histogram(df: pd.DataFrame, city: str) -> None:
     fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(12, 12))
     plt.subplots_adjust(hspace=0.5)
 
