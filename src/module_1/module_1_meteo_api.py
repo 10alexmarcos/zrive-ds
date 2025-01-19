@@ -66,7 +66,6 @@ def validate_response(response):
         raise
 
 
-
 def get_data_meteo_api(city: str):
     if city not in cities:
         raise ValueError(f"City '{city}' not found in this project")
@@ -113,11 +112,9 @@ def process_response(response: dict, city: str) -> pd.DataFrame:
 def daily_data_to_monthly_data(df: pd.DataFrame, city: str) -> pd.DataFrame:
     df["year"] = df["date"].dt.year
     df["month"] = df["date"].dt.month
-
+    #print(df.dtypes), used to be sure that I can use .mean(numeric_only)
     df_monthly = df.groupby(["year", "month"]).mean(numeric_only=True).reset_index()
-
     df_monthly["date"] = pd.to_datetime(df_monthly[["year", "month"]].assign(day=1))
-
     df_monthly = df_monthly.drop(columns=["year", "month"])
 
     df_monthly = df_monthly[
@@ -129,7 +126,7 @@ def daily_data_to_monthly_data(df: pd.DataFrame, city: str) -> pd.DataFrame:
 
 
 def visualize_evolution(df: pd.DataFrame, city: str) -> None:
-    fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(12, 12))
+    fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(13, 13))
     plt.subplots_adjust(hspace=0.5)
 
     date_format = mdates.DateFormatter("%Y-%m")
