@@ -57,6 +57,7 @@ response_schema = {
 }
 
 
+
 def validate_response(response):
     try:
         validate(instance=response, schema=response_schema)
@@ -65,20 +66,27 @@ def validate_response(response):
         print(f"Response validation failed: {e}")
         raise
 
+def make_api_call(url:str, params:dict, retries:int=5, cooldown:int=10):
+    for attempt in range(retries):
+        response= requests.get(url,params=params)
+
+        if response.status_code == 200:
+            return response.json()
+        elif response.status_code == 429:
+            print(f"Rate limit hit, retrying in {cooldown} seconds...")
+            time.sleep(cooldown)
+        else:
+            print(f"Error fetching data (status code {response.status_code}): {response.text}")
+            time.sleep(cooldown)
+    raise Exception(f"Failed to fetch data after {retries} attempts")
+
 
 def get_data_meteo_api(city: str):
     if city not in cities:
         raise ValueError(f"City '{city}' not found in this project")
 
     params = {**general_params, **cities[city]}
-    response = requests.get(API_URL, params=params)
-
-    if response.status_code != 200:
-        raise Exception(
-            f"Error fetching data from API: {response.status_code} - {response.text}"
-        )
-
-    response_json = response.json()
+    response_json = make_api_call(API_URL, params=params)
 
     print(f"You have selected the city: {city}")
     return response_json
@@ -105,7 +113,7 @@ def process_response(response: dict, city: str) -> pd.DataFrame:
     daily_data["wind_speed_10m_max(km/h)"] = wind_speed_10m_max
 
     daily_dataframe = pd.DataFrame(data=daily_data)
-    print(f"This is the daily dataframe of the city {city}\n", daily_dataframe)
+    print(f"This is the daily dataframe for the city {city}\n", daily_dataframe)
     return daily_dataframe
 
 
@@ -126,7 +134,7 @@ def daily_data_to_monthly_data(df: pd.DataFrame, city: str) -> pd.DataFrame:
         ]
     ]
 
-    print(f"This is the monthly dataframe of the city {city}\n", df_monthly)
+    print(f"This is the monthly dataframe for the city {city}\n", df_monthly)
     return df_monthly
 
 
