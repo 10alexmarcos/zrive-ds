@@ -47,5 +47,3 @@ def test_validate_response():
     validate_response(mock_response)
     with pytest.raises(Exception):
         validate_response({"invalid": "response"})
-
-
