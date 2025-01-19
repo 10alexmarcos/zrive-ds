@@ -34,8 +34,8 @@ response_schema = {
                 "time": {"type": "string"},
                 "temperature_2m_mean": {"type": "string"},
                 "precipitation_sum": {"type": "string"},
-                "wind_speed_10m_max": {"type": "string"}
-            }
+                "wind_speed_10m_max": {"type": "string"},
+            },
         },
         "daily": {
             "type": "object",
@@ -112,13 +112,18 @@ def process_response(response: dict, city: str) -> pd.DataFrame:
 def daily_data_to_monthly_data(df: pd.DataFrame, city: str) -> pd.DataFrame:
     df["year"] = df["date"].dt.year
     df["month"] = df["date"].dt.month
-    #print(df.dtypes), used to be sure that I can use .mean(numeric_only)
+    # print(df.dtypes), used to be sure that I can use .mean(numeric_only)
     df_monthly = df.groupby(["year", "month"]).mean(numeric_only=True).reset_index()
     df_monthly["date"] = pd.to_datetime(df_monthly[["year", "month"]].assign(day=1))
     df_monthly = df_monthly.drop(columns=["year", "month"])
 
     df_monthly = df_monthly[
-        ["date", "temperature_2m_mean(ºC)", "precipitation_sum(mm)", "wind_speed_10m_max(km/h)"]
+        [
+            "date",
+            "temperature_2m_mean(ºC)",
+            "precipitation_sum(mm)",
+            "wind_speed_10m_max(km/h)",
+        ]
     ]
 
     print(f"This is the monthly dataframe of the city {city}\n", df_monthly)
