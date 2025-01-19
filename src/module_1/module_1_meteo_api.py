@@ -1,15 +1,8 @@
-import openmeteo_requests
-import requests_cache
+import requests
 import pandas as pd
-from retry_requests import retry
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-import seaborn as sns
-
-# Setup the Open-Meteo API client with cache and retry on error
-cache_session = requests_cache.CachedSession(".cache", expire_after=-1)
-retry_session = retry(cache_session, retries=5, backoff_factor=0.2)
-openmeteo = openmeteo_requests.Client(session=retry_session)
+from jsonschema import validate, ValidationError
 
 API_URL = "https://archive-api.open-meteo.com/v1/archive"
 
@@ -25,43 +18,95 @@ cities = {
     "Rio": {"latitude": -22.906847, "longitude": -43.172896},
 }
 
+response_schema = {
+    "type": "object",
+    "properties": {
+        "latitude": {"type": "number"},
+        "longitude": {"type": "number"},
+        "generationtime_ms": {"type": "number"},
+        "utc_offset_seconds": {"type": "number"},
+        "timezone": {"type": "string"},
+        "timezone_abbreviation": {"type": "string"},
+        "elevation": {"type": "number"},
+        "daily_units": {
+            "type": "object",
+            "properties": {
+                "time": {"type": "string"},
+                "temperature_2m_mean": {"type": "string"},
+                "precipitation_sum": {"type": "string"},
+                "wind_speed_10m_max": {"type": "string"}
+            }
+        },
+        "daily": {
+            "type": "object",
+            "properties": {
+                "time": {"type": "array", "items": {"type": "string"}},
+                "temperature_2m_mean": {"type": "array", "items": {"type": "number"}},
+                "precipitation_sum": {"type": "array", "items": {"type": "number"}},
+                "wind_speed_10m_max": {"type": "array", "items": {"type": "number"}},
+            },
+            "required": [
+                "time",
+                "temperature_2m_mean",
+                "precipitation_sum",
+                "wind_speed_10m_max",
+            ],
+        },
+    },
+    "required": ["latitude", "longitude", "daily"],
+}
+
+
+def validate_response(response):
+    try:
+        validate(instance=response, schema=response_schema)
+        print("Schema validation passed.")
+    except ValidationError as e:
+        print(f"Response validation failed: {e}")
+        raise
+
+
 
 def get_data_meteo_api(city: str):
     if city not in cities:
         raise ValueError(f"City '{city}' not found in this project")
 
     params = {**general_params, **cities[city]}
-    responses = openmeteo.weather_api(API_URL, params=params)
-    response = responses[0]
-    print(f"The information shown from now on is about the city {city}")
-    return response
+    response = requests.get(API_URL, params=params)
+
+    if response.status_code != 200:
+        raise Exception(
+            f"Error fetching data from API: {response.status_code} - {response.text}"
+        )
+
+    response_json = response.json()
+
+    print(f"You have selected the city: {city}")
+    return response_json
 
 
-def process_response(response: str, city: str) -> pd.DataFrame:
-    print(f"Coordinates {response.Latitude()}°N {response.Longitude()}°E")
-    print(f"Elevation {response.Elevation()} m asl")
-    print(f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
+def process_response(response: dict, city: str) -> pd.DataFrame:
+    print(f"Coordinates of {city}: {response['latitude']}°N {response['longitude']}°E")
 
-    daily = response.Daily()
-    daily_temperature_2m_mean = daily.Variables(0).ValuesAsNumpy()
-    precipitation_sum = daily.Variables(1).ValuesAsNumpy()
-    wind_speed_10m_max = daily.Variables(2).ValuesAsNumpy()
+    daily = response["daily"]
+    temperature_2m_mean = daily["temperature_2m_mean"]
+    precipitation_sum = daily["precipitation_sum"]
+    wind_speed_10m_max = daily["wind_speed_10m_max"]
 
     daily_data = {
         "date": pd.date_range(
-            start=pd.to_datetime(daily.Time(), unit="s", utc=True),
-            end=pd.to_datetime(daily.TimeEnd(), unit="s", utc=True),
-            freq=pd.Timedelta(seconds=daily.Interval()),
-            inclusive="left",
+            start=pd.to_datetime(daily["time"][0], format="%Y-%m-%d"),
+            end=pd.to_datetime(daily["time"][-1], format="%Y-%m-%d"),
+            freq="D",
         )
     }
 
-    daily_data["temperature_2m_mean"] = daily_temperature_2m_mean
-    daily_data["precipitation_sum"] = precipitation_sum
-    daily_data["wind_speed_10m_max"] = wind_speed_10m_max
+    daily_data["temperature_2m_mean(ºC)"] = temperature_2m_mean
+    daily_data["precipitation_sum(mm)"] = precipitation_sum
+    daily_data["wind_speed_10m_max(km/h)"] = wind_speed_10m_max
 
     daily_dataframe = pd.DataFrame(data=daily_data)
-    print(f"This is the daily dataframe os the city {city}\n", daily_dataframe)
+    print(f"This is the daily dataframe of the city {city}\n", daily_dataframe)
     return daily_dataframe
 
 
@@ -76,10 +121,10 @@ def daily_data_to_monthly_data(df: pd.DataFrame, city: str) -> pd.DataFrame:
     df_monthly = df_monthly.drop(columns=["year", "month"])
 
     df_monthly = df_monthly[
-        ["date", "temperature_2m_mean", "precipitation_sum", "wind_speed_10m_max"]
+        ["date", "temperature_2m_mean(ºC)", "precipitation_sum(mm)", "wind_speed_10m_max(km/h)"]
     ]
 
-    print("This is the monthly dataframe of the city {city}\n", df_monthly)
+    print(f"This is the monthly dataframe of the city {city}\n", df_monthly)
     return df_monthly
 
 
@@ -105,41 +150,13 @@ def visualize_evolution(df: pd.DataFrame, city: str) -> None:
     plt.show()
 
 
-def visualize_histogram(df: pd.DataFrame, city: str) -> None:
-    fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(12, 12))
-    plt.subplots_adjust(hspace=0.5)
-
-    date_format = mdates.DateFormatter("%Y-%m")
-
-    for i, col in enumerate(df.columns[1:]):
-        axes[i].hist(
-            df["date"],
-            bins=pd.date_range(df["date"].min(), df["date"].max(), freq="M"),
-            weights=df[col],
-            color="blue",
-            edgecolor="black",
-            alpha=0.7,
-        )
-        axes[i].set_ylabel("Frequency")
-        axes[i].set_title(f"{col} distribution for {city}")
-        axes[i].grid(True)
-        axes[i].legend([col])
-
-        axes[i].xaxis.set_major_locator(mdates.MonthLocator(bymonth=[1, 7]))
-        axes[i].xaxis.set_major_formatter(date_format)
-        plt.setp(axes[i].xaxis.get_majorticklabels(), rotation=45, ha="right")
-
-    axes[-1].set_xlabel(f"{col} Values")  # Solo en el último gráfico
-    plt.show()
-
-
 def main():
     city = "Madrid"
     response = get_data_meteo_api(city)
+    validate_response(response)
     df = process_response(response, city)
     df_monthly = daily_data_to_monthly_data(df, city)
     visualize_evolution(df_monthly, city)
-    visualize_histogram(df_monthly, city)
 
 
 if __name__ == "__main__":
