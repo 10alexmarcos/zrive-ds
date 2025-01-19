@@ -1,3 +1,4 @@
+import time
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -57,7 +58,6 @@ response_schema = {
 }
 
 
-
 def validate_response(response):
     try:
         validate(instance=response, schema=response_schema)
@@ -66,9 +66,10 @@ def validate_response(response):
         print(f"Response validation failed: {e}")
         raise
 
-def make_api_call(url:str, params:dict, retries:int=5, cooldown:int=10):
+
+def make_api_call(url: str, params: dict, retries: int = 5, cooldown: int = 10):
     for attempt in range(retries):
-        response= requests.get(url,params=params)
+        response = requests.get(url, params=params)
 
         if response.status_code == 200:
             return response.json()
@@ -76,17 +77,19 @@ def make_api_call(url:str, params:dict, retries:int=5, cooldown:int=10):
             print(f"Rate limit hit, retrying in {cooldown} seconds...")
             time.sleep(cooldown)
         else:
-            print(f"Error fetching data (status code {response.status_code}): {response.text}")
+            print(
+                f"Error fetching data (status code {response.status_code}): {response.text}"
+            )
             time.sleep(cooldown)
     raise Exception(f"Failed to fetch data after {retries} attempts")
 
 
-def get_data_meteo_api(city: str):
+def get_data_meteo_api(city: str, api_call: callable = make_api_call):
     if city not in cities:
         raise ValueError(f"City '{city}' not found in this project")
 
     params = {**general_params, **cities[city]}
-    response_json = make_api_call(API_URL, params=params)
+    response_json = api_call(API_URL, params=params)
 
     print(f"You have selected the city: {city}")
     return response_json
