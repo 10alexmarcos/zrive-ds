@@ -58,15 +58,6 @@ response_schema = {
 }
 
 
-def validate_response(response):
-    try:
-        validate(instance=response, schema=response_schema)
-        print("Schema validation passed.")
-    except ValidationError as e:
-        print(f"Response validation failed: {e}")
-        raise
-
-
 def make_api_call(url: str, params: dict, retries: int = 5, cooldown: int = 10):
     for attempt in range(retries):
         response = requests.get(url, params=params)
@@ -93,6 +84,14 @@ def get_data_meteo_api(city: str, api_call: callable = make_api_call):
 
     print(f"You have selected the city: {city}")
     return response_json
+
+def validate_response(response):
+    try:
+        validate(instance=response, schema=response_schema)
+        print("Schema validation passed.")
+    except ValidationError as e:
+        print(f"Response validation failed: {e}")
+        raise
 
 
 def process_response(response: dict, city: str) -> pd.DataFrame:
