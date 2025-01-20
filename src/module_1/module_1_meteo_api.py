@@ -69,7 +69,7 @@ def make_api_call(url: str, params: dict, retries: int = 5, cooldown: int = 10):
             time.sleep(cooldown)
         else:
             print(
-                f"Error fetching data (status code {response.status_code}): {response.text}"
+                f"Error fetching data (status code{response.status_code}): {response.text}"
             )
             time.sleep(cooldown)
     raise Exception(f"Failed to fetch data after {retries} attempts")
@@ -84,6 +84,7 @@ def get_data_meteo_api(city: str, api_call: callable = make_api_call):
 
     print(f"You have selected the city: {city}")
     return response_json
+
 
 def validate_response(response):
     try:
