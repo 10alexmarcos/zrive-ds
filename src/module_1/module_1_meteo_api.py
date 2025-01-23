@@ -62,7 +62,7 @@ RESPONSE_SCHEMA = {
 }
 
 
-def make_api_call(url: str, params: dict, retries: int = 5, cooldown: int = 10):
+def make_api_call(url: str, params: dict, retries: int = 5, cooldown: int = 2):
     for attempt in range(retries):
         response = requests.get(url, params=params)
 
@@ -71,11 +71,13 @@ def make_api_call(url: str, params: dict, retries: int = 5, cooldown: int = 10):
         elif response.status_code == 429:
             logging.warning(f"Rate limit hit, retrying in {cooldown} seconds...")
             time.sleep(cooldown)
+            cooldown *= 2
         else:
             logging.error(
                 f"Error fetching data (status code{response.status_code}): {response.text}"
             )
             time.sleep(cooldown)
+            cooldown *= 2
     
     logging.error(f"Failed to fetch data after {retries} attempts")
     raise Exception(f"Failed to fetch data after {retries} attempts")
