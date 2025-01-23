@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from jsonschema import validate, ValidationError
 
-logger = logging.getLogger(__name__) #uses file name as name of the log
+logger = logging.getLogger(__name__)  # uses file name as name of the log
 logger.level = logging.INFO
 
 API_URL = "https://archive-api.open-meteo.com/v1/archive"
@@ -78,7 +78,7 @@ def make_api_call(url: str, params: dict, retries: int = 5, cooldown: int = 2):
             )
             time.sleep(cooldown)
             cooldown *= 2
-    
+
     logging.error(f"Failed to fetch data after {retries} attempts")
     raise Exception(f"Failed to fetch data after {retries} attempts")
 
