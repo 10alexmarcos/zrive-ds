@@ -7,19 +7,19 @@ from jsonschema import validate, ValidationError
 
 API_URL = "https://archive-api.open-meteo.com/v1/archive"
 
-general_params = {
+GENERAL_PARAMS = {
     "start_date": "2010-01-01",
     "end_date": "2020-12-31",
     "daily": "temperature_2m_mean,precipitation_sum,wind_speed_10m_max",
 }
 
-cities = {
+CITIES = {
     "Madrid": {"latitude": 40.416775, "longitude": -3.703790},
     "London": {"latitude": 51.507351, "longitude": -0.12775},
     "Rio": {"latitude": -22.906847, "longitude": -43.172896},
 }
 
-response_schema = {
+RESPONSE_SCHEMA = {
     "type": "object",
     "properties": {
         "latitude": {"type": "number"},
@@ -76,10 +76,10 @@ def make_api_call(url: str, params: dict, retries: int = 5, cooldown: int = 10):
 
 
 def get_data_meteo_api(city: str, api_call: callable = make_api_call):
-    if city not in cities:
+    if city not in CITIES:
         raise ValueError(f"City '{city}' not found in this project")
 
-    params = {**general_params, **cities[city]}
+    params = {**GENERAL_PARAMS, **CITIES[city]}
     response_json = api_call(API_URL, params=params)
 
     print(f"You have selected the city: {city}")
@@ -88,7 +88,7 @@ def get_data_meteo_api(city: str, api_call: callable = make_api_call):
 
 def validate_response(response):
     try:
-        validate(instance=response, schema=response_schema)
+        validate(instance=response, schema=RESPONSE_SCHEMA)
         print("Schema validation passed.")
     except ValidationError as e:
         print(f"Response validation failed: {e}")
