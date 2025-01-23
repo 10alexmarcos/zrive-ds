@@ -1,9 +1,13 @@
 import time
 import requests
+import logging
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from jsonschema import validate, ValidationError
+
+logger = logging.getLogger(__name__) #uses file name as name of the log
+logger.level = logging.INFO
 
 API_URL = "https://archive-api.open-meteo.com/v1/archive"
 
@@ -65,13 +69,15 @@ def make_api_call(url: str, params: dict, retries: int = 5, cooldown: int = 10):
         if response.status_code == 200:
             return response.json()
         elif response.status_code == 429:
-            print(f"Rate limit hit, retrying in {cooldown} seconds...")
+            logging.warning(f"Rate limit hit, retrying in {cooldown} seconds...")
             time.sleep(cooldown)
         else:
-            print(
+            logging.error(
                 f"Error fetching data (status code{response.status_code}): {response.text}"
             )
             time.sleep(cooldown)
+    
+    logging.error(f"Failed to fetch data after {retries} attempts")
     raise Exception(f"Failed to fetch data after {retries} attempts")
 
 
