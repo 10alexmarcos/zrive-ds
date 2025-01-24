@@ -168,11 +168,13 @@ def visualize_evolution(df: pd.DataFrame, city: str) -> None:
         plt.setp(axes[i].xaxis.get_majorticklabels(), rotation=45, ha="right")
 
     axes[-1].set_xlabel("Date")
+    filename=f"src/module_1/{city}_evolution.png"
+    plt.savefig(filename, bbox_inches="tight")
     plt.show()
 
 
 def main():
-    city = "Madrid"
+    city = "Rio"
     response = get_data_meteo_api(city)
     validate_response(response)
     df = process_response(response, city)
