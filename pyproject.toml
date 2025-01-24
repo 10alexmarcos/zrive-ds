@@ -18,7 +18,11 @@ pytest = "^7.4.0"
 scikit-learn = "^1.4.1.post1"
 jsonschema = "^4.23.0"
 awscli = "^1.37.5"
+pyarrow = "^19.0.0"
 
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
 
 [build-system]
 requires = ["poetry-core"]
