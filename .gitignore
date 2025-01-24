@@ -6,6 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+#aws credentials
+.env
+
+#aws data
+aws/
+
 # Distribution / packaging
 .Python
 build/
