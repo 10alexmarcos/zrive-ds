@@ -1116,6 +1116,31 @@ files = [
 ]
 
 [[package]]
+name = "mlxtend"
+version = "0.23.3"
+description = "Machine Learning Library Extensions"
+optional = false
+python-versions = "*"
+groups = ["main"]
+markers = "python_version == \"3.11\" or python_version >= \"3.12\""
+files = [
+    {file = "mlxtend-0.23.3-py3-none-any.whl", hash = "sha256:f9fec721c4121be87dac00e513456dde5bf56b7427750719c0a291cd58b6538e"},
+    {file = "mlxtend-0.23.3.tar.gz", hash = "sha256:e58b2ea6148043297529e15c39ded540f62d04e044d75c2497afbe4682002675"},
+]
+
+[package.dependencies]
+joblib = ">=0.13.2"
+matplotlib = ">=3.0.0"
+numpy = ">=1.16.2"
+pandas = ">=0.24.2"
+scikit-learn = ">=1.3.1"
+scipy = ">=1.2.1"
+
+[package.extras]
+docs = ["mkdocs", "mkdocs-bootswatch", "nbconvert", "python-markdown-math"]
+testing = ["pytest"]
+
+[[package]]
 name = "mypy"
 version = "1.13.0"
 description = "Optional static typing for Python"
@@ -2465,4 +2490,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.11"
-content-hash = "a485e8235e219d956b5f9429f3b0472629cce3ff06616bb05cc7093bca02456f"
+content-hash = "d86797ecb5baba1da727bc53b9dcf121a4914700aa5069169c0a9933ede35c80"
