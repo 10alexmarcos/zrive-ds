@@ -3662,17 +3662,12 @@ ax[0].legend()
 plt.tight_layout()
 
 
-ENTENDER BIEN EL CODIGO
-
-
 ```
 
 
-      Cell In[128], line 15
-        ENTENDER BIEN EL CODIGO
-                 ^
-    SyntaxError: invalid syntax
-
+    
+![png](module_2_EDA_files/module_2_EDA_105_0.png)
+    
 
 
 En este caso representamos las distribuciones para las dos clases (outcome 0 y outcome 1) de forma separada.
