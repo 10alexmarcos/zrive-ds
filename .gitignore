@@ -9,6 +9,9 @@ __pycache__/
 #aws credentials
 .env
 
+#some notes
+src/module_2/notes.txt
+
 #aws data
 aws/
 
