@@ -35,17 +35,17 @@ def evaluate_model(model_name: str, y_test: pd.Series, y_pred: pd.Series) -> flo
     pr_auc = auc(recall_, precision_)
     roc_auc = roc_auc_score(y_test, y_pred)
     logger.info(
-        f"{model_name} results: {(PR AUC: {pr_auc:.2f}, 'ROC AUC': {roc_auc:.2f})}"
+        f"{model_name} results: {{PR AUC: {pr_auc:.2f}, 'ROC AUC': {roc_auc:.2f}}}"
     )
 
     return pr_auc
 
-def feature_label_split(df: pd.DataFrame) -> (pd.DataFrame, pd.Series):
+def feature_label_split(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
     return df[FEATURE_COLS], df[LABEL_COL]
 
 def train_test_split(
         df: pd.DataFrame, train_size: float
-) -> (pd.DataFrame, pd.Series, pd.DataFrame, pd.Series):
+) -> tuple[pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]:
     """There is a time component to it so we split by date """
     daily_orders = df.groupby("order_date").order_id.nunique()
     cumsum_daily_orders = daily_orders.cumsum() / daily_orders.sum()
