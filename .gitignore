@@ -12,6 +12,8 @@ __pycache__/
 #some notes
 src/module_2/notes.txt
 
+.DS_Store
+
 #aws data
 aws/
 
