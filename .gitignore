@@ -18,6 +18,8 @@ src/.DS_Store
 
 #aws data
 aws/
+data/
+
 
 # Distribution / packaging
 .Python
