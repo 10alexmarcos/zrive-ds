@@ -13,6 +13,8 @@ __pycache__/
 src/module_2/notes.txt
 
 .DS_Store
+src/.DS_Store
+
 
 #aws data
 aws/
