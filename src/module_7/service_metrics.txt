@@ -1,0 +1,16 @@
+2025-03-16 20:10:50,554 - INFO -  Status endpoint accessed.
+2025-03-16 20:10:59,321 - INFO -  Status endpoint accessed.
+2025-03-16 20:11:48,940 - ERROR -  User not found User not found in feature store
+2025-03-16 20:12:43,701 - ERROR -  Prediction error: Error during model inference
+2025-03-16 20:17:24,793 - INFO -  Predicition for USER_ID 62e271062eb827e411bd73941178d29b022f5f2de9d37f50190a1d6741e02be71414684ca6df992c186522a0433f10367d18d7102da301989cb7929559747eda: 48.74287458745877 (latency: 0.008 seconds)
+2025-03-16 20:17:39,796 - ERROR -  Prediction error: Error during model inference
+2025-03-16 20:17:54,000 - ERROR -  User not found User not found in feature store
+2025-03-16 20:18:26,706 - INFO -  Predicition for USER_ID f6451fce7b1c58d0effbe37fcb4e67b718193562766470d53a843a8ca0bdbb4719861dc508336468d08e8b9ab9593d60ea3271b9525394183a68dc8eb8745598: 70.20139108910888 (latency: 0.007 seconds)
+2025-03-16 20:18:43,990 - ERROR -  User not found User not found in feature store
+2025-03-16 20:43:35,892 - INFO -  Predicition for USER_ID 62e271062eb827e411bd73941178d29b022f5f2de9d37f50190a1d6741e02be71414684ca6df992c186522a0433f10367d18d7102da301989cb7929559747eda: 48.74287458745877 (latency: 0.006 seconds)
+2025-03-16 20:44:46,005 - ERROR -  User not found User not found in feature store
+2025-03-16 20:45:08,072 - ERROR -  User not found User not found in feature store
+2025-03-16 20:45:14,220 - ERROR -  User not found User not found in feature store
+2025-03-16 20:45:42,784 - ERROR -  User not found User not found in feature store
+2025-03-16 20:46:20,926 - INFO -  Predicition for USER_ID f6451fce7b1c58d0effbe37fcb4e67b718193562766470d53a843a8ca0bdbb4719861dc508336468d08e8b9ab9593d60ea3271b9525394183a68dc8eb8745598: 70.20139108910888 (latency: 0.008 seconds)
+2025-03-17 20:03:40,172 - INFO -  Predicition for USER_ID f6451fce7b1c58d0effbe37fcb4e67b718193562766470d53a843a8ca0bdbb4719861dc508336468d08e8b9ab9593d60ea3271b9525394183a68dc8eb8745598: 70.20139108910888 (latency: 0.008 seconds)
