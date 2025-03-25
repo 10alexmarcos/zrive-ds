@@ -19,45 +19,56 @@ model = BasketModel()
 
 @app.get("/status")
 async def get_status():
-    #Endpoint para comprobar el estado del servicio
-    #responde con un codigo 200 y un mensaje
-
     logging.info("Status endpoint accessed.")
     return {"status": "ok"}
 
+
 @app.post("/predict")
 async def predict(request: Request):
-    #endpoint para obtener la predicción del precio de la cesta
-    #recibe un JSON con la clave 'USER_ID', obtiene las features y realiza la predicción
-    #Registra métricas del servicio y del modelo
-
     start_time = time.time()
     try:
         data = await request.json()
         user_id = data.get("USER_ID")
         if not user_id:
+            logging.warning("Missing USER_ID in request")
             raise HTTPException(status_code=400, detail="USER_ID is required")
         
+
         features = fs.get_features(user_id)
+        features_array = np.atleast_2d(features.values)
+        
+        if features_array.size == 0:
+            logging.error(f"User {user_id} has no features")
+            raise HTTPException(status_code=422,detail="User exists but has no features")
 
-        features_array = np.array(features.values).reshape(1, -1)
-
-        prediction = model.predict(features_array)
-        price = prediction[0]
-
+        
+        predictions = model.predict(features_array)
+        price = float(predictions.mean())
+        
         latency = time.time() - start_time
         logging.info(
-            f"Predicition for USER_ID {user_id}: {price} (latency: {latency:.3f} seconds)"
+            f"Prediction successful for {user_id}: "
+            f"price={price:.2f} | "
+            f"samples={len(predictions)} | "
+            f"latency={latency:.3f}s"
         )
+        
+        return {
+            "price": price
+        }
 
-        return {"price": price}
     
     except UserNotFoundException as e:
-        logging.error(f"User not found {str(e)}")
-        raise HTTPException(status_code=404, detail="User not found in feature store")
+        logging.error(f"User not found: {str(e)}")
+        raise HTTPException(status_code=404, detail=str(e))
     except PredictionException as e:
         logging.error(f"Prediction error: {str(e)}")
-        raise HTTPException(status_code=500, detail="Error during model inference")
+        raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
-        logging.error(f"Unexcpected error: {str(e)}")
+        logging.error(f"Unexpected error: {str(e)}")
         raise HTTPException(status_code=500, detail="Unexpected error")
+
+
+
+
+
