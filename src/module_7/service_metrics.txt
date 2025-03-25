@@ -14,3 +14,92 @@
 2025-03-16 20:45:42,784 - ERROR -  User not found User not found in feature store
 2025-03-16 20:46:20,926 - INFO -  Predicition for USER_ID f6451fce7b1c58d0effbe37fcb4e67b718193562766470d53a843a8ca0bdbb4719861dc508336468d08e8b9ab9593d60ea3271b9525394183a68dc8eb8745598: 70.20139108910888 (latency: 0.008 seconds)
 2025-03-17 20:03:40,172 - INFO -  Predicition for USER_ID f6451fce7b1c58d0effbe37fcb4e67b718193562766470d53a843a8ca0bdbb4719861dc508336468d08e8b9ab9593d60ea3271b9525394183a68dc8eb8745598: 70.20139108910888 (latency: 0.008 seconds)
+2025-03-25 18:50:00,038 - INFO -  Status endpoint accessed.
+2025-03-25 18:50:55,123 - INFO -  Predicition for USER_ID f6451fce7b1c58d0effbe37fcb4e67b718193562766470d53a843a8ca0bdbb4719861dc508336468d08e8b9ab9593d60ea3271b9525394183a68dc8eb8745598: 70.20139108910888 (latency: 0.008 seconds)
+2025-03-25 20:37:38,967 - INFO -  Status endpoint accessed.
+2025-03-25 20:37:41,390 - INFO -  Status endpoint accessed.
+2025-03-25 20:48:08,926 - INFO -  Status endpoint accessed.
+2025-03-25 20:48:11,372 - INFO -  Status endpoint accessed.
+2025-03-25 20:49:35,273 - INFO -  Predicition for USER_ID f6451fce7b1c58d0effbe37fcb4e67b718193562766470d53a843a8ca0bdbb4719861dc508336468d08e8b9ab9593d60ea3271b9525394183a68dc8eb8745598: 70.20139108910888 (latency: 0.009 seconds)
+2025-03-25 20:57:07,874 - INFO -  Predicition for USER_ID f6451fce7b1c58d0effbe37fcb4e67b718193562766470d53a843a8ca0bdbb4719861dc508336468d08e8b9ab9593d60ea3271b9525394183a68dc8eb8745598: 70.20139108910888 (latency: 0.004 seconds)
+2025-03-25 20:57:11,947 - INFO -  Predicition for USER_ID f6451fce7b1c58d0effbe37fcb4e67b718193562766470d53a843a8ca0bdbb4719861dc508336468d08e8b9ab9593d60ea3271b9525394183a68dc8eb8745598: 70.20139108910888 (latency: 0.006 seconds)
+2025-03-25 20:57:29,884 - ERROR -  User not found User not found in feature store
+2025-03-25 20:57:32,280 - INFO -  Predicition for USER_ID f6451fce7b1c58d0effbe37fcb4e67b718193562766470d53a843a8ca0bdbb4719861dc508336468d08e8b9ab9593d60ea3271b9525394183a68dc8eb8745598: 70.20139108910888 (latency: 0.009 seconds)
+2025-03-25 21:03:33,752 - ERROR -  User not found User not found in feature store
+2025-03-25 21:04:03,725 - ERROR -  User not found User not found in feature store
+2025-03-25 21:04:28,536 - ERROR -  User not found User not found in feature store
+2025-03-25 21:06:13,915 - ERROR -  User not found User not found in feature store
+2025-03-25 21:06:40,292 - ERROR -  Prediction error: Error during model inference
+2025-03-25 21:07:04,811 - ERROR -  User not found User not found in feature store
+2025-03-25 21:07:25,440 - ERROR -  User not found User not found in feature store
+2025-03-25 21:07:50,181 - ERROR -  User not found User not found in feature store
+2025-03-25 21:08:11,026 - ERROR -  User not found User not found in feature store
+2025-03-25 21:08:33,809 - ERROR -  User not found User not found in feature store
+2025-03-25 21:09:04,950 - ERROR -  Prediction error: Error during model inference
+2025-03-25 21:09:27,463 - ERROR -  Prediction error: Error during model inference
+2025-03-25 21:10:05,390 - ERROR -  Prediction error: Error during model inference
+2025-03-25 21:13:10,152 - INFO -  Predicition for USER_ID f6451fce7b1c58d0effbe37fcb4e67b718193562766470d53a843a8ca0bdbb4719861dc508336468d08e8b9ab9593d60ea3271b9525394183a68dc8eb8745598: 70.20139108910888 (latency: 0.009 seconds)
+2025-03-25 21:13:39,822 - ERROR -  Prediction error: Error during model inference
+2025-03-25 21:14:01,726 - ERROR -  Prediction error: Error during model inference
+2025-03-25 21:14:22,854 - ERROR -  Prediction error: Error during model inference
+2025-03-25 21:14:45,946 - ERROR -  Prediction error: Error during model inference
+2025-03-25 21:18:17,596 - INFO -  Prediction for USER_ID eaf35b70532c64a4812f7a85a5c41f0f2be0578ab0663c7dc6b03465c0f918f6f52d50ef1f1d2e12afda44f636416d0e01bf452f9605fc402a2bcd42aa7fc729: 53.86 (based on 2 samples, latency: 0.006s)
+2025-03-25 21:18:26,443 - INFO -  Prediction for USER_ID f524eaf26b76bc6226747768f120ffcd23d5c3d52a0a1903b80ef1e2b515bff7c7485a00dadca74f3968f0826360d046b31dcf8a2b2afa1fbe8b0fb4267311fb: 51.46 (based on 4 samples, latency: 0.014s)
+2025-03-25 21:18:31,046 - INFO -  Prediction for USER_ID aa5e21db3186dcd84c161719c5ade8a19adb853ea8bfef3fdc654c32b9eef16fb6e89d2222f421e7d88ff5c0b9d7a373d5ed9ceb2ff4ec2aa5779841dac1ab0a: 51.02 (based on 2 samples, latency: 0.010s)
+2025-03-25 21:22:38,401 - INFO -  Prediction for USER_ID aa5e21db3186dcd84c161719c5ade8a19adb853ea8bfef3fdc654c32b9eef16fb6e89d2222f421e7d88ff5c0b9d7a373d5ed9ceb2ff4ec2aa5779841dac1ab0a: 51.02 (based on 2 samples, latency: 0.006s)
+2025-03-25 21:22:41,942 - INFO -  Prediction for USER_ID 500027bf392bfa9ef527919569fba44904d429155b7cf46a992dbea492cc9f0a372d61d3daf8464bed9713ee8e79e04de9d9590d11d2bfe3796ec3f5a4cac625: 19.26 (based on 3 samples, latency: 0.014s)
+2025-03-25 21:22:47,503 - ERROR -  User not found: User not found in feature store
+2025-03-25 21:22:51,253 - INFO -  Prediction for USER_ID eaf35b70532c64a4812f7a85a5c41f0f2be0578ab0663c7dc6b03465c0f918f6f52d50ef1f1d2e12afda44f636416d0e01bf452f9605fc402a2bcd42aa7fc729: 53.86 (based on 2 samples, latency: 0.011s)
+2025-03-25 21:29:16,193 - ERROR -  User not found: User not found in feature store
+2025-03-25 21:34:27,851 - INFO -  Status endpoint accessed.
+2025-03-25 21:34:31,330 - INFO -  Status endpoint accessed.
+2025-03-25 21:34:32,164 - INFO -  Status endpoint accessed.
+2025-03-25 21:34:33,148 - INFO -  Status endpoint accessed.
+2025-03-25 21:35:57,462 - ERROR -  User not found: User not found in feature store
+2025-03-25 21:35:59,703 - INFO -  Prediction for USER_ID eaf35b70532c64a4812f7a85a5c41f0f2be0578ab0663c7dc6b03465c0f918f6f52d50ef1f1d2e12afda44f636416d0e01bf452f9605fc402a2bcd42aa7fc729: 53.86 (based on 2 samples, latency: 0.010s)
+2025-03-25 21:36:02,316 - INFO -  Prediction for USER_ID 500027bf392bfa9ef527919569fba44904d429155b7cf46a992dbea492cc9f0a372d61d3daf8464bed9713ee8e79e04de9d9590d11d2bfe3796ec3f5a4cac625: 19.26 (based on 3 samples, latency: 0.013s)
+2025-03-25 21:36:05,362 - INFO -  Prediction for USER_ID eaf35b70532c64a4812f7a85a5c41f0f2be0578ab0663c7dc6b03465c0f918f6f52d50ef1f1d2e12afda44f636416d0e01bf452f9605fc402a2bcd42aa7fc729: 53.86 (based on 2 samples, latency: 0.011s)
+2025-03-25 21:36:08,032 - INFO -  Prediction for USER_ID 500027bf392bfa9ef527919569fba44904d429155b7cf46a992dbea492cc9f0a372d61d3daf8464bed9713ee8e79e04de9d9590d11d2bfe3796ec3f5a4cac625: 19.26 (based on 3 samples, latency: 0.016s)
+2025-03-25 21:36:11,050 - INFO -  Prediction for USER_ID 500027bf392bfa9ef527919569fba44904d429155b7cf46a992dbea492cc9f0a372d61d3daf8464bed9713ee8e79e04de9d9590d11d2bfe3796ec3f5a4cac625: 19.26 (based on 3 samples, latency: 0.016s)
+2025-03-25 21:36:14,324 - INFO -  Prediction for USER_ID eaf35b70532c64a4812f7a85a5c41f0f2be0578ab0663c7dc6b03465c0f918f6f52d50ef1f1d2e12afda44f636416d0e01bf452f9605fc402a2bcd42aa7fc729: 53.86 (based on 2 samples, latency: 0.012s)
+2025-03-25 21:36:41,916 - INFO -  Prediction for USER_ID f49d903f33fde7436da05a2dc6eddebff62cd9ca552121b119e61b263d6150d3675043ae266a9c06646f4fbc6b6689c8293392103a119f6ac72a4fc3f4ea678b: 44.03 (based on 2 samples, latency: 0.012s)
+2025-03-25 21:37:00,285 - ERROR -  Prediction error: Error during model inference
+2025-03-25 21:37:28,541 - ERROR -  Prediction error: Error during model inference
+2025-03-25 21:38:08,965 - INFO -  Prediction for USER_ID 500027bf392bfa9ef527919569fba44904d429155b7cf46a992dbea492cc9f0a372d61d3daf8464bed9713ee8e79e04de9d9590d11d2bfe3796ec3f5a4cac625: 19.26 (based on 3 samples, latency: 0.014s)
+2025-03-25 21:42:42,633 - INFO -  Starting prediction for USER_ID: 500027bf392bfa9ef527919569fba44904d429155b7cf46a992dbea492cc9f0a372d61d3daf8464bed9713ee8e79e04de9d9590d11d2bfe3796ec3f5a4cac625
+2025-03-25 21:42:42,642 - INFO -  Prediction successful for 500027bf392bfa9ef527919569fba44904d429155b7cf46a992dbea492cc9f0a372d61d3daf8464bed9713ee8e79e04de9d9590d11d2bfe3796ec3f5a4cac625: price=19.26 | samples=3 | latency=0.009s
+2025-03-25 21:43:19,709 - INFO -  Starting prediction for USER_ID: f8cd30a11a778030c503131665a3141d23af6a98ac5a21ea39bd948310095f88da397ed532b01ac3808445808e533eb647f2b32dd9bb06b4fcdae2dbbc6ed875
+2025-03-25 21:43:19,715 - INFO -  Prediction successful for f8cd30a11a778030c503131665a3141d23af6a98ac5a21ea39bd948310095f88da397ed532b01ac3808445808e533eb647f2b32dd9bb06b4fcdae2dbbc6ed875: price=47.43 | samples=1 | latency=0.007s
+2025-03-25 21:43:41,190 - INFO -  Starting prediction for USER_ID: f8cd30a11a778030c503131665a3141d23af6a98ac5a21ea39bd948310095f88da397ed532b01ac3808445808e533eb647f2b32d
+2025-03-25 21:43:41,190 - ERROR -  User not found: User not found in feature store
+2025-03-25 21:44:52,480 - ERROR -  Unexpected error: Expecting value: line 1 column 13 (char 12)
+2025-03-25 21:44:58,512 - ERROR -  Unexpected error: Expecting value: line 1 column 13 (char 12)
+2025-03-25 21:45:06,734 - ERROR -  Unexpected error: Expecting value: line 1 column 12 (char 11)
+2025-03-25 21:45:12,185 - INFO -  Starting prediction for USER_ID: ff
+2025-03-25 21:45:12,185 - ERROR -  User not found: User not found in feature store
+2025-03-25 21:45:16,680 - WARNING -  Missing USER_ID in request
+2025-03-25 21:45:16,680 - ERROR -  Unexpected error: 400: USER_ID is required
+2025-03-25 21:45:21,419 - INFO -  Starting prediction for USER_ID: ff
+2025-03-25 21:45:21,420 - ERROR -  User not found: User not found in feature store
+2025-03-25 21:45:28,513 - INFO -  Starting prediction for USER_ID: f8cd30a11a778030c503131665a3141d23af6a98ac5a21ea39bd948310095f88da397ed532b01ac3808445808e533eb647f2b32d
+2025-03-25 21:45:28,514 - ERROR -  User not found: User not found in feature store
+2025-03-25 21:45:33,508 - INFO -  Starting prediction for USER_ID: f49d903f33fde7436da05a2dc6eddebff62cd9ca552121b119e61b263d6150d3675043ae266a9c06646f4fbc6b6689c8293392103a119f6ac72a4fc3f4ea678b
+2025-03-25 21:45:33,515 - INFO -  Prediction successful for f49d903f33fde7436da05a2dc6eddebff62cd9ca552121b119e61b263d6150d3675043ae266a9c06646f4fbc6b6689c8293392103a119f6ac72a4fc3f4ea678b: price=44.03 | samples=2 | latency=0.007s
+2025-03-25 21:45:38,251 - INFO -  Starting prediction for USER_ID: 62e271062eb827e411bd73941178d29b022f5f2de9d37f50190a1d6741e02be71414684ca6df992c186522a0433f10367d18d7102da301989cb7929559747eda
+2025-03-25 21:45:38,259 - INFO -  Prediction successful for 62e271062eb827e411bd73941178d29b022f5f2de9d37f50190a1d6741e02be71414684ca6df992c186522a0433f10367d18d7102da301989cb7929559747eda: price=48.74 | samples=1 | latency=0.008s
+2025-03-25 21:45:44,291 - INFO -  Starting prediction for USER_ID: eaf35b70532c64a4812f7a85a5c41f0f2be0578ab0663c7dc6b03465c0f918f6f52d50ef1f1d2e12afda44f636416d0e01bf452f9605fc402a2bcd42aa7fc729
+2025-03-25 21:45:44,298 - INFO -  Prediction successful for eaf35b70532c64a4812f7a85a5c41f0f2be0578ab0663c7dc6b03465c0f918f6f52d50ef1f1d2e12afda44f636416d0e01bf452f9605fc402a2bcd42aa7fc729: price=53.86 | samples=2 | latency=0.007s
+2025-03-25 21:46:10,908 - INFO -  Prediction successful for eaf35b70532c64a4812f7a85a5c41f0f2be0578ab0663c7dc6b03465c0f918f6f52d50ef1f1d2e12afda44f636416d0e01bf452f9605fc402a2bcd42aa7fc729: price=53.86 | samples=2 | latency=0.003s
+2025-03-25 21:50:15,231 - INFO -  Prediction successful for eaf35b70532c64a4812f7a85a5c41f0f2be0578ab0663c7dc6b03465c0f918f6f52d50ef1f1d2e12afda44f636416d0e01bf452f9605fc402a2bcd42aa7fc729: price=53.86 | samples=2 | latency=0.004s
+2025-03-25 21:50:19,619 - ERROR -  User not found: User not found in feature store
+2025-03-25 21:59:06,532 - ERROR -  User not found: User not found in feature store
+2025-03-25 22:04:09,317 - INFO -  Prediction successful for f49d903f33fde7436da05a2dc6eddebff62cd9ca552121b119e61b263d6150d3675043ae266a9c06646f4fbc6b6689c8293392103a119f6ac72a4fc3f4ea678b: price=44.03 | samples=2 | latency=0.007s
+2025-03-25 22:04:12,990 - ERROR -  User not found: User not found in feature store
+2025-03-25 22:04:33,626 - INFO -  Prediction successful for ee86e171caeba0c73ab1b486a8014be0979b36dbbfd3921bbf91377261d72561750537c048acfceae3b34f5d531b1b02930bffd61a23d97005571867c42e0c4d: price=40.64 | samples=1 | latency=0.006s
+2025-03-25 22:04:59,474 - INFO -  Prediction successful for b474350da70b77e838abb837d72b8688205794256baa7fdbd7034c86832f97ef461d0331a5357a7e6a27ba4c4aee9b83e9426fcb79a50c1461374da2100b3cc1: price=44.90 | samples=5 | latency=0.008s
+2025-03-25 22:05:20,233 - ERROR -  User not found: User not found in feature store
+2025-03-25 22:05:39,871 - ERROR -  User not found: User not found in feature store
+2025-03-25 22:05:59,236 - INFO -  Prediction successful for faaad4bc113fe7e0a888a0d3535877d3c692f591882c2529261bff3d7d21fecb6cf8b002c4809d2bc4bc26141e33dc5ee930896761d985eceab182fa4a103870: price=51.87 | samples=2 | latency=0.008s
+2025-03-25 22:06:45,225 - INFO -  Prediction successful for 500027bf392bfa9ef527919569fba44904d429155b7cf46a992dbea492cc9f0a372d61d3daf8464bed9713ee8e79e04de9d9590d11d2bfe3796ec3f5a4cac625: price=19.26 | samples=3 | latency=0.007s
+2025-03-25 22:07:04,808 - INFO -  Prediction successful for 14be3833c19e0a1fd7e6db0e5375a3d1dcc9efafcb0e6944789aac06f1479ebada6a41ee4e278d2208c15379b5a5faca72d1bc906994bc47ab778de435207566: price=36.62 | samples=10 | latency=0.007s
+2025-03-25 22:07:28,140 - INFO -  Prediction successful for aa5e21db3186dcd84c161719c5ade8a19adb853ea8bfef3fdc654c32b9eef16fb6e89d2222f421e7d88ff5c0b9d7a373d5ed9ceb2ff4ec2aa5779841dac1ab0a: price=51.02 | samples=2 | latency=0.008s
