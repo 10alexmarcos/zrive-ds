@@ -20,7 +20,7 @@ src/.DS_Store
 aws/
 
 data/
-
+bin/
 
 # Distribution / packaging
 .Python
